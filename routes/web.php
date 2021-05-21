@@ -26,3 +26,4 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/profile', [UserController::class, 'profile'])->name('profile');
 Route::post('/update-avatar', [UserController::class, 'update_avatar'])->name('update_avatar');
+Route::post('/change-password', [UserController::class, 'change_password'])->name('change_password');
