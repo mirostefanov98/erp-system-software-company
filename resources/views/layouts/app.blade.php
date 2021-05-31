@@ -51,17 +51,35 @@
                                 </li>
                             @endif
 
-                            @if (Route::has('register'))
+                        @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('leaves.my_leaves') }}">My Leaves</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('projects.my_projects') }}">My Projects</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('leaves.all_leaves') }}">All Leaves</a>
+                            </li>
+
+                            @if (Auth::user()->role <= 1)
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('projects.index') }}">All Projects</a>
                                 </li>
                             @endif
-                        @else
+
+                            @if (Auth::user()->role == 0)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('users.index') }}">Users</a>
+                                </li>
+                            @endif
+
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     <img src="{{ asset('storage/' . Auth::user()->image_path) }}" class=" rounded-circle"
-                                        alt="No image" width="35px" height="35px">
+                                        alt="No image" width="25px" height="25px">
                                     {{ Auth::user()->firstname }}
                                 </a>
 
@@ -75,7 +93,7 @@
                                         </svg> Profile</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                             document.getElementById('logout-form').submit();">
+                                                                                                                                                                             document.getElementById('logout-form').submit();">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                             class="bi bi-box-arrow-right" viewBox="0 0 16 16">
                                             <path fill-rule="evenodd"
@@ -97,7 +115,9 @@
         </nav>
 
         <main class="py-4">
-            @yield('content')
+            <div class="container">
+                @yield('content')
+            </div>
         </main>
     </div>
 </body>

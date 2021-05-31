@@ -128,6 +128,7 @@
                                     <select id="role" class="form-select @error('role') is-invalid @enderror" name="role"
                                         required autofocus>
                                         <option selected disabled>Select role</option>
+                                        <option value="0">Admin</option>
                                         <option value="1">Project manager</option>
                                         <option value="2">Developer</option>
                                         <option value="3">Human Resources</option>

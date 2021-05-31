@@ -2,56 +2,65 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
-    public function __construct()
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
     {
-        $this->middleware('auth');
+        $users = User::latest()->get();
+        return view('users.index', compact('users'));
     }
 
     /**
-     * Show the application dashboard.
+     * Show the form for editing the specified resource.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
-    public function profile()
+    public function edit(User $user)
     {
-        return view('user.profile', ['user' => Auth::user()]);
+        return view('users.edit', compact('user'));
     }
 
-    public function update_avatar(Request $request)
-    {
-        if (isset($request->image)) {
-            $user = Auth::user();
-            $user->image_path = $request->file('image')->store('images/' . $user->id, 'public');
-            $user->save();
-        }
-
-
-        return view('user.profile', ['user' => Auth::user()]);
-    }
-
-    public function change_password(Request $request)
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, User $user)
     {
         $request->validate([
-            'old_password' => ['required'],
-            'new_password' => ['required'],
-            'confirm_password' => ['required', 'string', 'min:8', 'same:new_password'],
+            'number' => ['required', 'string', 'max:10'],
+            'position' => ['required', 'string', 'max:50'],
+            'role' => ['required'],
         ]);
 
-        if (Hash::check($request->old_password, Auth::user()->password)) {
-            if ($request->new_password == $request->confirm_password) {
-                $user = Auth::user();
-                $user->password = Hash::make($request->new_password);
-                $user->save();
-                return redirect()->back()->with('status', "Password updated!");
-            }
-        } else {
-            return redirect()->back()->with('error', "Old Password dont mach!");
-        }
+        $user->update($request->all());
+
+        return redirect()->route('users.index');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(User $user)
+    {
+        $user->projects()->detach();
+        $user->delete();
+
+        return redirect()->route('users.index');
     }
 }
