@@ -52,26 +52,35 @@
                             @endif
 
                         @else
+                            @if (Auth::user()->role != 3)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('projects.my_projects') }}">My Projects</a>
+                                </li>
+                            @endif
+
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('leaves.my_leaves') }}">My Leaves</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('projects.my_projects') }}">My Projects</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('leaves.all_leaves') }}">All Leaves</a>
+                                <a class="nav-link" href="{{ route('resources.index') }}">Resources</a>
                             </li>
 
-                            @if (Auth::user()->role <= 1)
+                            @if (Auth::user()->role != 3)
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('projects.index') }}">All Projects</a>
                                 </li>
                             @endif
 
+                            @if (Auth::user()->role == 3 || Auth::user()->role == 0)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('leaves.all_leaves') }}">All Leaves</a>
+                                </li>
+                            @endif
+
                             @if (Auth::user()->role == 0)
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('users.index') }}">Users</a>
+                                    <a class="nav-link" href="{{ route('users.index') }}">People</a>
                                 </li>
                             @endif
 
@@ -93,7 +102,7 @@
                                         </svg> Profile</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                                                                                                             document.getElementById('logout-form').submit();">
+                                                                                                                                                                                                                                                                             document.getElementById('logout-form').submit();">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                             class="bi bi-box-arrow-right" viewBox="0 0 16 16">
                                             <path fill-rule="evenodd"

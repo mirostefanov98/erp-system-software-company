@@ -1,0 +1,52 @@
+@extends('layouts.app')
+
+@section('content')
+    <div class="row">
+        <div class="col-8">
+            <h2>Resources</h2>
+        </div>
+        @if (Auth::user()->role != 2)
+            <div class="col-8 my-1">
+                <a class="btn btn-primary" href="{{ route('resources.create') }}">Add</a>
+            </div>
+        @endif
+    </div>
+    <table class="table table-bordered text-center ">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Link</th>
+                @if (Auth::user()->role != 2)
+                    <th scope="col">Actions</th>
+                @endif
+            </tr>
+            </tr>
+        </thead>
+        <tbody class="align-middle">
+            @foreach ($resources as $resource)
+                <tr>
+                    <td>{{ $resource->name }}</td>
+                    <td>{{ $resource->description }}</td>
+                    <td><a href="{{ $resource->link }}">{{ $resource->link }}</a></td>
+                    @if (Auth::user()->role != 2)
+                        <td>
+                            <form action="{{ route('resources.destroy', $resource->id) }}" method="POST">
+
+                                <a class="btn btn-primary" href="{{ route('resources.edit', $resource->id) }}">Edit</a>
+
+                                @csrf
+                                @method('DELETE')
+
+                                <button type="submit" class="btn btn-danger"
+                                    onclick="if(!confirm('Are you sure to delete this resource?')) return false ">
+                                    Delete
+                                </button>
+                            </form>
+                        </td>
+                    @endif
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+@endsection

@@ -33,7 +33,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        $users = User::all();
+        $users = User::where('role', '<>', 3)->where('role', '<>', 0)->get();
         return view('projects.create', compact('users'));
     }
 
@@ -83,7 +83,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        $users = User::all();
+        $users = User::where('role', '<>', 3)->where('role', '<>', 0)->get();
         return view('projects.edit', compact('project', 'users'));
     }
 

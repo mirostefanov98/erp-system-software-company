@@ -6,7 +6,7 @@
             <h2>Tasks of project: {{ $project->name }}</h2>
         </div>
         <div class="col-8 my-1">
-            <a class="btn btn-primary" href="{{ route('projects.index') }}"> Back</a>
+            <a class="btn btn-primary" href="{{ url()->previous() }}    "> Back</a>
             @if (Auth::user()->role <= 1)
                 <a class="btn btn-primary" href="{{ route('tasks.create', $project->id) }}">Add</a>
             @endif
@@ -60,10 +60,9 @@
                         @endif
                     </td>
                     <td>
-                        <form action="{{ route('tasks.destroy', $task->id) }}" method="POST">
+                        @if (Auth::user()->role <= 1)
+                            <form action="{{ route('tasks.destroy', $task->id) }}" method="POST">
 
-                            <a class="btn btn-primary" href="{{ route('tasks.change', $task->id) }}">Change</a>
-                            @if (Auth::user()->role <= 1)
                                 <a class="btn btn-primary" href="{{ route('tasks.edit', $task->id) }}">Edit</a>
 
                                 @csrf
@@ -73,7 +72,11 @@
                                     onclick="if(!confirm('Are you sure to delete this task?')) return false ">
                                     Delete
                                 </button>
-                            @endif
+                            @else
+                                <a class="btn btn-primary" href="{{ route('tasks.change', $task->id) }}">Change
+                                    status</a>
+
+                        @endif
                         </form>
                     </td>
                 </tr>
