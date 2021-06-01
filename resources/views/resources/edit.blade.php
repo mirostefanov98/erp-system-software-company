@@ -32,7 +32,7 @@
                 <div class="form-group">
                     <strong>Resource name:</strong>
                     <input type="text" name="name" value="{{ $resource->name }}" class="form-control"
-                        placeholder="Resource name">
+                        placeholder="Resource name" required>
                 </div>
             </div>
 
@@ -40,7 +40,7 @@
                 <div class="form-group">
                     <strong>Description:</strong>
                     <textarea class="form-control" name="description" placeholder="Description of resource"
-                        id="exampleFormControlTextarea1" rows="3">{{ $resource->description }}</textarea>
+                        id="exampleFormControlTextarea1" rows="3" required>{{ $resource->description }}</textarea>
                 </div>
             </div>
 
@@ -48,7 +48,7 @@
                 <div class="form-group">
                     <strong>Resource URL:</strong>
                     <input type="url" name="link" value="{{ $resource->link }}" class="form-control"
-                        placeholder="Resource URL">
+                        placeholder="Resource URL" required>
                 </div>
             </div>
 

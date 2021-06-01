@@ -15,9 +15,9 @@
     <table class="table table-bordered text-center ">
         <thead>
             <tr>
+                <th scope="col">Priority</th>
                 <th scope="col">Task name</th>
                 <th scope="col">Status</th>
-                <th scope="col">Priority</th>
                 <th scope="col">Description</th>
                 <th scope="col">State</th>
                 <th scope="col">Actions</th>
@@ -27,6 +27,21 @@
         <tbody class="align-middle">
             @foreach ($tasks as $task)
                 <tr>
+                    <td>
+                        @switch($task->priority)
+                            @case(1)
+                                <strong class="text-success">Low</strong>
+                            @break
+
+                            @case(2)
+                                <strong class="text-primary">Medium</strong>
+                            @break
+                            @case(3)
+                                <strong class="text-danger">High</strong>
+                            @break
+                        @endswitch
+
+                    </td>
                     <td>{{ $task->name }}</td>
                     <td>
 
@@ -36,27 +51,12 @@
                                 {{ $task->status }}%</div>
                         </div>
                     </td>
-                    <td>
-                        @switch($task->priority)
-                            @case(1)
-                                <p class="text-success">Low</p>
-                            @break
-
-                            @case(2)
-                                <p class="text-primary">Medium</p>
-                            @break
-                            @case(3)
-                                <p class="text-danger">High</p>
-                            @break
-                        @endswitch
-
-                    </td>
                     <td>{{ $task->description }}</td>
                     <td>
                         @if ($task->state == 0)
-                            Active
+                            <strong class="text-success">Active</strong>
                         @else
-                            Finished
+                            <strong class="text-danger">Finished</strong>
                         @endif
                     </td>
                     <td>

@@ -31,14 +31,14 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Project name:</strong>
-                    <input type="text" name="name" class="form-control" value="{{ $project->name }}">
+                    <input type="text" name="name" class="form-control" value="{{ $project->name }}" required>
                 </div>
             </div>
 
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>State:</strong>
-                    <select class="form-control" name="state" id="exampleSelect1">
+                    <select class="form-control" name="state" id="exampleSelect1" required>
                         <option @if ($project->state == 0) selected @endif
                             value="0">
                             Active
@@ -53,7 +53,7 @@
                 <div class="form-group">
                     <strong>Deadline date:</strong>
                     <input class="form-control" type="date" name="date" value="{{ $project->deadline_date }}"
-                        id="example-date-input">
+                        id="example-date-input" required>
                 </div>
             </div>
 

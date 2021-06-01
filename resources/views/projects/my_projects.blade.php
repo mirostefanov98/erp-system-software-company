@@ -12,7 +12,7 @@
                 <th scope="col">Project name</th>
                 <th scope="col">State</th>
                 <th scope="col">Deadline date</th>
-                <th scope="col">Status</th>
+                <th scope="col" style="width:15%">Status</th>
                 <th scope="col">Users</th>
                 <th scope="col">Actions</th>
             </tr>
@@ -24,9 +24,9 @@
                     <td>{{ $project->name }}</td>
                     <td>
                         @if ($project->state == 0)
-                            Active
+                            <strong class="text-success">Active</strong>
                         @else
-                            Finished
+                            <strong class="text-danger">Finished</strong>
                         @endif
                     </td>
                     <td>{{ $project->deadline_date }}</td>

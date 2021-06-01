@@ -28,9 +28,9 @@
                     <td>{{ $leave->description }}</td>
                     <td>
                         @if ($leave->state == 0)
-                            Unapproved
+                            <strong class="text-danger">Unapproved</strong>
                         @else
-                            Approved
+                            <strong class="text-success">Approved</strong>
                         @endif
                     </td>
                     <td>

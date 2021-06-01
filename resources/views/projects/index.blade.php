@@ -5,7 +5,7 @@
         <div class="col-8">
             <h2>All Projects</h2>
         </div>
-        @if (Auth::user()->role == 0 || Auth::user()->role == 1)
+        @if (Auth::user()->role <= 1)
             <div class="col-8 my-1">
                 <a class="btn btn-primary" href="{{ route('projects.create') }}">Add</a>
             </div>
@@ -17,7 +17,7 @@
                 <th scope="col">Project name</th>
                 <th scope="col">State</th>
                 <th scope="col">Deadline date</th>
-                <th scope="col">Status</th>
+                <th scope="col" style="width:15%">Status</th>
                 <th scope="col">Users</th>
                 @if (Auth::user()->role == 0 || Auth::user()->role == 1)
                     <th scope="col">Actions</th>
@@ -31,9 +31,9 @@
                     <td>{{ $project->name }}</td>
                     <td>
                         @if ($project->state == 0)
-                            Active
+                            <strong class="text-success">Active</strong>
                         @else
-                            Finished
+                            <strong class="text-danger">Finished</strong>
                         @endif
                     </td>
                     <td>{{ $project->deadline_date }}</td>
@@ -50,22 +50,45 @@
                             {{ $user->firstname }} {{ $user->lastname }}<br>
                         @endforeach
                     </td>
-                    @if (Auth::user()->role == 0 || Auth::user()->role == 1)
+                    @if (Auth::user()->role <= 1)
                         <td>
-                            <form action="{{ route('projects.destroy', $project->id) }}" method="POST">
+                            @if (Auth::user()->role == 0)
+                                <form action="{{ route('projects.destroy', $project->id) }}" method="POST">
 
-                                <a class="btn btn-primary" href="{{ route('tasks.index', $project->id) }}">Tasks</a>
+                                    <a class="btn btn-primary" href="{{ route('tasks.index', $project->id) }}">Tasks</a>
 
-                                <a class="btn btn-primary" href="{{ route('projects.edit', $project->id) }}">Edit</a>
+                                    <a class="btn btn-primary" href="{{ route('projects.edit', $project->id) }}">Edit</a>
 
-                                @csrf
-                                @method('DELETE')
+                                    @csrf
+                                    @method('DELETE')
 
-                                <button type="submit" class="btn btn-danger" @if ($project->state == 0) disabled @endif
-                                    onclick="if(!confirm('Are you sure to delete this project?')) return false ">
-                                    Delete
-                                </button>
-                            </form>
+                                    <button type="submit" class="btn btn-danger" @if ($project->state == 0) disabled @endif
+                                        onclick="if(!confirm('Are you sure to delete this project?')) return false ">
+                                        Delete
+                                    </button>
+                                </form>
+                            @else
+                                @foreach ($project->users as $user)
+                                    @if (Auth::user()->id == $user->id)
+                                        <form action="{{ route('projects.destroy', $project->id) }}" method="POST">
+
+                                            <a class="btn btn-primary"
+                                                href="{{ route('tasks.index', $project->id) }}">Tasks</a>
+
+                                            <a class="btn btn-primary"
+                                                href="{{ route('projects.edit', $project->id) }}">Edit</a>
+
+                                            @csrf
+                                            @method('DELETE')
+
+                                            <button type="submit" class="btn btn-danger" @if ($project->state == 0) disabled @endif
+                                                onclick="if(!confirm('Are you sure to delete this project?')) return false ">
+                                                Delete
+                                            </button>
+                                        </form>
+                                    @endif
+                                @endforeach
+                            @endif
                         </td>
                     @endif
                 </tr>

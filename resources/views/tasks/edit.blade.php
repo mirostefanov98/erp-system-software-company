@@ -31,7 +31,8 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Task name:</strong>
-                    <input type="text" name="name" value="{{ $task->name }}" class="form-control" placeholder="Task name">
+                    <input type="text" name="name" value="{{ $task->name }}" class="form-control" placeholder="Task name"
+                        required>
                 </div>
             </div>
 
@@ -39,14 +40,14 @@
                 <div class="form-group">
                     <strong>Description:</strong>
                     <textarea class="form-control" name="description" placeholder="Description of task"
-                        id="exampleFormControlTextarea1" rows="3">{{ $task->description }}</textarea>
+                        id="exampleFormControlTextarea1" rows="3" required>{{ $task->description }}</textarea>
                 </div>
             </div>
 
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Priority:</strong>
-                    <select class="form-control" name="priority" id="exampleFormControlSelect1">
+                    <select class="form-control" name="priority" id="exampleFormControlSelect1" required>
                         <option @if ($task->priority == 1) selected @endif
                             value="1">Low</option>
                         <option @if ($task->priority == 2) selected @endif

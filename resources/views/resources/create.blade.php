@@ -30,7 +30,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Resource name:</strong>
-                    <input type="text" name="name" class="form-control" placeholder="Resource name">
+                    <input type="text" name="name" class="form-control" placeholder="Resource name" required>
                 </div>
             </div>
 
@@ -38,14 +38,14 @@
                 <div class="form-group">
                     <strong>Description:</strong>
                     <textarea class="form-control" name="description" placeholder="Description of resource"
-                        id="exampleFormControlTextarea1" rows="3"></textarea>
+                        id="exampleFormControlTextarea1" rows="3" required></textarea>
                 </div>
             </div>
 
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Resource URL:</strong>
-                    <input type="url" name="link" class="form-control" placeholder="Resource URL">
+                    <input type="url" name="link" class="form-control" placeholder="Resource URL" required>
                 </div>
             </div>
 

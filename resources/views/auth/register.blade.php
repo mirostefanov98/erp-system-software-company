@@ -18,7 +18,8 @@
                                 <div class="col-md-6">
                                     <input id="firstname" type="text"
                                         class="form-control @error('firstname') is-invalid @enderror" name="firstname"
-                                        value="{{ old('firstname') }}" required autocomplete="firstname" autofocus>
+                                        value="{{ old('firstname') }}" required autocomplete="firstname"
+                                        placeholder="Firstname" autofocus>
 
                                     @error('firstname')
                                         <span class="invalid-feedback" role="alert">
@@ -35,7 +36,8 @@
                                 <div class="col-md-6">
                                     <input id="lastname" type="text"
                                         class="form-control @error('lastname') is-invalid @enderror" name="lastname"
-                                        value="{{ old('lastname') }}" required autocomplete="lastname" autofocus>
+                                        value="{{ old('lastname') }}" required autocomplete="lastname"
+                                        placeholder="Lastname" autofocus>
 
                                     @error('lastname')
                                         <span class="invalid-feedback" role="alert">
@@ -51,7 +53,8 @@
 
                                 <div class="col-md-6">
                                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                                        name="email" value="{{ old('email') }}" required autocomplete="email">
+                                        name="email" value="{{ old('email') }}" required autocomplete="email"
+                                        placeholder="Email">
 
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
@@ -93,9 +96,9 @@
                                     class="col-md-4 col-form-label text-md-right">{{ __('Number') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="number" type="text"
-                                        class="form-control @error('number') is-invalid @enderror" name="number"
-                                        value="{{ old('number') }}" required autocomplete="number" autofocus>
+                                    <input id="number" type="tel" class="form-control @error('number') is-invalid @enderror"
+                                        name="number" value="{{ old('number') }}" required autocomplete="number"
+                                        placeholder="0XXXXXXXXX" pattern="[0]{1}[0-9]{9}" autofocus>
 
                                     @error('number')
                                         <span class="invalid-feedback" role="alert">
@@ -112,7 +115,8 @@
                                 <div class="col-md-6">
                                     <input id="position" type="text"
                                         class="form-control @error('position') is-invalid @enderror" name="position"
-                                        value="{{ old('position') }}" required autocomplete="position" autofocus>
+                                        value="{{ old('position') }}" required autocomplete="position"
+                                        placeholder="Position" autofocus>
 
                                     @error('position')
                                         <span class="invalid-feedback" role="alert">

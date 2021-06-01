@@ -30,23 +30,25 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Project name:</strong>
-                    <input type="text" name="name" class="form-control" placeholder="Project name">
+                    <input type="text" name="name" class="form-control" placeholder="Project name" required>
                 </div>
             </div>
 
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Deadline date:</strong>
-                    <input class="form-control" type="date" name="date" id="example-date-input">
+                    <input class="form-control" type="date" name="date" id="example-date-input"
+                        value="{{ date('Y-m-d') }}" min="{{ date('Y-m-d') }}" required>
                 </div>
             </div>
 
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class=" col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Add users:</strong>
-                    <select multiple class="form-control" name="users[]" id="exampleSelect1" size="6">
+                    <select multiple class="form-control" name="users[]" id="exampleSelect1" size="6" required>
                         @foreach ($users as $user)
-                            <option value="{{ $user->id }}">{{ $user->firstname }} {{ $user->lastname }} - position:
+                            <option value="{{ $user->id }}">{{ $user->firstname }} {{ $user->lastname }} -
+                                position:
                                 {{ $user->position }}
                             </option>
                         @endforeach

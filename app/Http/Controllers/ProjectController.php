@@ -96,6 +96,12 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
+        $request->validate([
+            'name' => 'required',
+            'date' => 'required',
+            'users' => 'required',
+        ]);
+
         $project->name = $request->name;
         $project->state = $request->state;
         $project->deadline_date = $request->date;

@@ -29,14 +29,16 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Start date:</strong>
-                <input class="form-control" type="date" name="start_date" id="example-date-input">
+                <input class="form-control" type="date" name="start_date" value="{{ date('Y-m-d') }}"
+                    min="{{ date('Y-m-d') }}" id="example-date-input" required>
             </div>
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>End date:</strong>
-                <input class="form-control" type="date" name="end_date" id="example-date-input">
+                <input class="form-control" type="date" name="end_date" value="{{ date('Y-m-d') }}"
+                    min="{{ date('Y-m-d') }}" id="example-date-input" required>
             </div>
         </div>
 
@@ -44,7 +46,7 @@
             <div class="form-group">
                 <strong>Description:</strong>
                 <textarea class="form-control" name="description" placeholder="Description for Leave"
-                    id="exampleFormControlTextarea1" rows="3"></textarea>
+                    id="exampleFormControlTextarea1" rows="3" required></textarea>
             </div>
         </div>
 

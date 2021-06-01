@@ -40,6 +40,7 @@ class TaskController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'description' => 'required',
             'priority' => 'required',
         ]);
 
@@ -86,6 +87,12 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'priority' => 'required',
+        ]);
+
         $task->name = $request->name;
         $task->description = $request->description;
         $task->priority = $request->priority;

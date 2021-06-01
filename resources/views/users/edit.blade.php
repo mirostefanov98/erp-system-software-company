@@ -20,8 +20,9 @@
             <label for="number" class="col-md-4 col-form-label text-md-right">{{ __('Number') }}</label>
 
             <div class="col-md-6">
-                <input id="number" type="text" class="form-control @error('number') is-invalid @enderror" name="number"
-                    value="{{ $user->number }}" autocomplete="number" autofocus>
+                <input id="number" type="tel" class="form-control @error('number') is-invalid @enderror" name="number"
+                    value="{{ $user->number }}" autocomplete="number" required placeholder="0XXXXXXXXX"
+                    pattern="[0]{1}[0-9]{9}" autofocus>
 
                 @error('number')
                     <span class="invalid-feedback" role="alert">
@@ -36,7 +37,7 @@
 
             <div class="col-md-6">
                 <input id="position" type="text" class="form-control @error('position') is-invalid @enderror"
-                    name="position" value="{{ $user->position }}" autocomplete="position" autofocus>
+                    name="position" value="{{ $user->position }}" autocomplete="position" required autofocus>
 
                 @error('position')
                     <span class="invalid-feedback" role="alert">
@@ -49,7 +50,7 @@
         <div class="form-group row">
             <label for="role" class="col-md-4 col-form-label text-md-right">{{ __('Role') }}</label>
             <div class="col-md-6">
-                <select id="role" class="form-select @error('role') is-invalid @enderror" name="role" autofocus>
+                <select id="role" class="form-select @error('role') is-invalid @enderror" name="role" required autofocus>
                     <option disabled>Select role</option>
                     <option @if ($user->role == 0) selected @endif value="0">
                         Admin</option>
