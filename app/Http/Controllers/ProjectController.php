@@ -22,7 +22,7 @@ class ProjectController extends Controller
     public function index()
     {
 
-        $projects = Project::latest()->get();
+        $projects = Project::sortable()->latest()->paginate(5);
         return view('projects.index', compact('projects'));
     }
 
@@ -130,7 +130,37 @@ class ProjectController extends Controller
     public function my_projects()
     {
         $user = Auth::user();
-        $projects = $user->projects;
+
+
+        $projects = $user->projects()->sortable()->paginate(5);
+        return view('projects.my_projects', compact('projects'));
+    }
+
+    public function search(Request $request)
+    {
+        $request->validate([
+            'search' => ['required'],
+        ]);
+
+        $search = $request->search;
+
+        $projects = Project::sortable()->where('name', 'LIKE', "%{$search}%")
+            ->paginate(5);
+
+        return view('projects.index', compact('projects'));
+    }
+
+    public function my_search(Request $request)
+    {
+        $request->validate([
+            'search' => ['required'],
+        ]);
+
+        $search = $request->search;
+        $user = Auth::user();
+
+        $projects = $user->projects()->sortable()->where('name', 'LIKE', "%{$search}%")->paginate(5);
+
         return view('projects.my_projects', compact('projects'));
     }
 }

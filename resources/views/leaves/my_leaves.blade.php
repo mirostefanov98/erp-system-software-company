@@ -38,4 +38,5 @@
             @endforeach
         </tbody>
     </table>
+    {{ $leaves->links() }}
 @endsection

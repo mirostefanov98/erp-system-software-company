@@ -2,22 +2,33 @@
 
 @section('content')
     <div class="row">
-        <div class="col-8">
+        <div class="col-12">
             <h2>All Projects</h2>
         </div>
-        @if (Auth::user()->role <= 1)
-            <div class="col-8 my-1">
-                <a class="btn btn-primary" href="{{ route('projects.create') }}">Add</a>
+        <div class="col-12 my-1">
+            <div class="row">
+                <div class="col-8">
+                    @if (Auth::user()->role <= 1)
+                        <a class="btn btn-primary" href="{{ route('projects.create') }}">Add</a>
+                    @endif
+                </div>
+                <div class="col-4">
+                    <form class="d-flex" action="{{ route('projects.search') }}" method="GET">
+                        <input class="form-control mx-1" type="search" name="search" aria-label="Search"
+                            placeholder="Project name" required />
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
             </div>
-        @endif
+        </div>
     </div>
     <table class="table table-bordered text-center ">
         <thead>
             <tr>
                 <th scope="col">Project name</th>
-                <th scope="col">State</th>
-                <th scope="col">Deadline date</th>
-                <th scope="col" style="width:15%">Status</th>
+                <th scope="col">@sortablelink('state')</th>
+                <th scope="col">@sortablelink('deadline_date','Deadline date')</th>
+                <th scope="col" style="width:15%">@sortablelink('status')</th>
                 <th scope="col">Users</th>
                 @if (Auth::user()->role == 0 || Auth::user()->role == 1)
                     <th scope="col">Actions</th>
@@ -95,4 +106,5 @@
             @endforeach
         </tbody>
     </table>
+    {{ $projects->appends(Request::all())->links() }}
 @endsection

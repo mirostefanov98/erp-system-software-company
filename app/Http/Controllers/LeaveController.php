@@ -16,7 +16,7 @@ class LeaveController extends Controller
     public function my_leaves()
     {
         $user = Auth::user();
-        $leaves = $user->leaves->sortByDesc('created_at');
+        $leaves = $user->leaves()->latest()->paginate(5);
         return view('leaves.my_leaves', compact('leaves'));
     }
 
@@ -74,7 +74,7 @@ class LeaveController extends Controller
 
     public function all_leaves()
     {
-        $leaves = Leave::latest()->get();
+        $leaves = Leave::sortable()->latest()->paginate(5);
         return view('leaves.all_leaves', compact('leaves'));
     }
 }

@@ -2,24 +2,34 @@
 
 @section('content')
     <div class="row">
-        <div class="col-8">
+        <div class="col-12">
             <h2>Tasks of project: {{ $project->name }}</h2>
         </div>
-        <div class="col-8 my-1">
-            <a class="btn btn-primary" href="{{ url()->previous() }}    "> Back</a>
-            @if (Auth::user()->role <= 1)
-                <a class="btn btn-primary" href="{{ route('tasks.create', $project->id) }}">Add</a>
-            @endif
+        <div class="col-12 my-1">
+            <div class="row">
+                <div class="col-8">
+                    @if (Auth::user()->role <= 1)
+                        <a class="btn btn-primary" href="{{ route('tasks.create', $project->id) }}">Add</a>
+                    @endif
+                </div>
+                <div class="col-4">
+                    <form class="d-flex" action="{{ route('tasks.search', $project->id) }}" method="GET">
+                        <input class="form-control mx-1" type="search" name="search" aria-label="Search"
+                            placeholder="Task name/Description" required />
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
     <table class="table table-bordered text-center ">
         <thead>
             <tr>
-                <th scope="col">Priority</th>
+                <th scope="col">@sortablelink('priority')</th>
                 <th scope="col">Task name</th>
-                <th scope="col">Status</th>
+                <th scope="col">@sortablelink('status')</th>
                 <th scope="col">Description</th>
-                <th scope="col">State</th>
+                <th scope="col">@sortablelink('state')</th>
                 <th scope="col">Actions</th>
             </tr>
             </tr>
@@ -83,4 +93,5 @@
             @endforeach
         </tbody>
     </table>
+    {{ $tasks->appends(Request::all())->links() }}
 @endsection

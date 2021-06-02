@@ -5,11 +5,22 @@
         <div class="col-8">
             <h2>Resources</h2>
         </div>
-        @if (Auth::user()->role != 2)
-            <div class="col-8 my-1">
-                <a class="btn btn-primary" href="{{ route('resources.create') }}">Add</a>
+        <div class="col-12 my-1">
+            <div class="row">
+                <div class="col-8">
+                    @if (Auth::user()->role != 2)
+                        <a class="btn btn-primary" href="{{ route('resources.create') }}">Add</a>
+                    @endif
+                </div>
+                <div class="col-4">
+                    <form class="d-flex" action="{{ route('resources.search') }}" method="GET">
+                        <input class="form-control mx-1" type="search" name="search" aria-label="Search"
+                            placeholder="Name/Description" required />
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
             </div>
-        @endif
+        </div>
     </div>
     <table class="table table-bordered text-center ">
         <thead>
@@ -49,4 +60,5 @@
             @endforeach
         </tbody>
     </table>
+    {{ $resources->appends(Request::all())->links() }}
 @endsection

@@ -5,16 +5,15 @@
         <div class="col-8">
             <h2>All leaves</h2>
         </div>
-
     </div>
     <table class="table table-bordered text-center ">
         <thead>
             <tr>
-                <th scope="col">Name</th>
+                <th scope="col">@sortablelink('user_id', 'Name')</th>
                 <th scope="col">Start date</th>
                 <th scope="col">End date</th>
                 <th scope="col">Description</th>
-                <th scope="col">State</th>
+                <th scope="col">@sortablelink('state')</th>
                 <th scope="col">Actions</th>
             </tr>
             </tr>
@@ -57,4 +56,5 @@
             @endforeach
         </tbody>
     </table>
+    {{ $leaves->links() }}
 @endsection

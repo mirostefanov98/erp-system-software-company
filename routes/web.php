@@ -45,10 +45,15 @@ Route::group(['middleware' => ['auth']], function () {
 
     //Resources
     Route::get('/resources', [ResourceController::class, 'index'])->name('resources.index');
+    Route::get('/search/resources', [ResourceController::class, 'search'])->name('resources.search');
+
 
     //Admin
     Route::group(['middleware' => ['role:admin']], function () {
         Route::resource('users', UserController::class);
+
+        //Search Users
+        Route::get('/search/users', [UserController::class, 'search'])->name('users.search');
     });
 
     //Project manager
@@ -88,12 +93,17 @@ Route::group(['middleware' => ['auth']], function () {
 
         //Projects
         Route::get('/my-projects', [ProjectController::class, 'my_projects'])->name('projects.my_projects');
+        Route::get('/search/my-projects', [ProjectController::class, 'my_search'])->name('my_projects.search');
+
         Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
+        Route::get('/search/projects', [ProjectController::class, 'search'])->name('projects.search');
+
 
         //Tasks
         Route::get('/tasks/{project}', [TaskController::class, 'index'])->name('tasks.index');
         Route::get('/tasks/change/{task}', [TaskController::class, 'change'])->name('tasks.change');
         Route::put('/tasks/change/{task}', [TaskController::class, 'change_update'])->name('tasks.change_update');
+        Route::get('/search/tasks{project}', [TaskController::class, 'search'])->name('tasks.search');
     });
 
     //Admin, Project manager, HR

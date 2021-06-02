@@ -4,10 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Kyslik\ColumnSortable\Sortable;
 
 class Project extends Model
 {
     use HasFactory;
+    use Sortable;
+
 
     protected $fillable = [
         'name',
@@ -15,6 +18,8 @@ class Project extends Model
         'deadline_date',
         'status',
     ];
+
+    public $sortable = ['state', 'deadline_date', 'status'];
 
     public function users()
     {

@@ -15,7 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::latest()->get();
+        $users = User::sortable()->latest()->paginate(5);
         return view('users.index', compact('users'));
     }
 
@@ -62,5 +62,21 @@ class UserController extends Controller
         $user->delete();
 
         return redirect()->route('users.index');
+    }
+
+    public function search(Request $request)
+    {
+        $request->validate([
+            'search' => ['required'],
+        ]);
+
+        $search = $request->search;
+
+        $users = User::sortable()->where('firstname', 'LIKE', "%{$search}%")
+            ->orWhere('lastname', 'LIKE', "%{$search}%")
+            ->orWhere('position', 'LIKE', "%{$search}%")
+            ->paginate(5);
+
+        return view('users.index', compact('users'));
     }
 }

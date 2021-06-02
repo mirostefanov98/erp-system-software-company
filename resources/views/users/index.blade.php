@@ -2,11 +2,22 @@
 
 @section('content')
     <div class="row">
-        <div class="col-8">
-            <h2>Users in company</h2>
+        <div class="col-12">
+            <h2>All Users</h2>
         </div>
-        <div class="col-8 my-1">
-            <a class="btn btn-primary" href="{{ route('register') }}">Add</a>
+        <div class="col-12 my-1">
+            <div class="row">
+                <div class="col-8">
+                    <a class="btn btn-primary" href="{{ route('register') }}">Add</a>
+                </div>
+                <div class="col-4">
+                    <form class="d-flex" action="{{ route('users.search') }}" method="GET">
+                        <input class="form-control mx-1" type="search" name="search" aria-label="Search"
+                            placeholder="Firstname/Lastname/Position" required />
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
     <table class="table table-bordered text-center ">
@@ -17,8 +28,8 @@
                 <th scope="col">Lastname</th>
                 <th scope="col">Email</th>
                 <th scope="col">Number</th>
-                <th scope="col">Position</th>
-                <th scope="col">Role</th>
+                <th scope="col">@sortablelink('position')</th>
+                <th scope="col">@sortablelink('role')</th>
                 <th scope="col">Actions</th>
             </tr>
             </tr>
@@ -68,4 +79,5 @@
             @endforeach
         </tbody>
     </table>
+    {{ $users->appends(Request::all())->links() }}
 @endsection

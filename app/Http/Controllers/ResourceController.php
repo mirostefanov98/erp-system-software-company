@@ -9,7 +9,7 @@ class ResourceController extends Controller
 {
     public function index()
     {
-        $resources = Resource::all();
+        $resources = Resource::paginate(5);
         return view('resources.index', compact('resources'));
     }
 
@@ -60,5 +60,20 @@ class ResourceController extends Controller
     {
         $resource->delete();
         return redirect()->route('resources.index');
+    }
+
+    public function search(Request $request)
+    {
+        $request->validate([
+            'search' => ['required'],
+        ]);
+
+        $search = $request->search;
+
+        $resources = Resource::where('name', 'LIKE', "%{$search}%")
+            ->orWhere('description', 'LIKE', "%{$search}%")
+            ->paginate(5);
+
+        return view('resources.index', compact('resources'));
     }
 }

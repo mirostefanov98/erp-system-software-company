@@ -16,7 +16,7 @@ class TaskController extends Controller
     public function index(Project $project)
     {
 
-        $tasks = $project->tasks;
+        $tasks = $project->tasks()->sortable()->paginate(5);
         return view('tasks.index', compact('tasks', 'project'));
     }
 
@@ -127,5 +127,23 @@ class TaskController extends Controller
         $task->save();
 
         return redirect()->route('tasks.index', $task->project_id);
+    }
+
+    public function search(Request $request, Project $project)
+    {
+        $request->validate([
+            'search' => ['required'],
+        ]);
+
+        $search = $request->search;
+
+        $tasks = $project->tasks()->sortable()
+            ->where(function ($query) use ($search) {
+                $query->where('name', 'LIKE', "%{$search}%")
+                    ->orWhere('description', 'LIKE', "%{$search}%");
+            })
+            ->paginate(5);
+
+        return view('tasks.index', compact('tasks', 'project'));
     }
 }
