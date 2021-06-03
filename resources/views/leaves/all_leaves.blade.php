@@ -12,7 +12,7 @@
                 <th scope="col">@sortablelink('user_id', 'Name')</th>
                 <th scope="col">Start date</th>
                 <th scope="col">End date</th>
-                <th scope="col">Description</th>
+                <th scope="col" style="width: 30%">Description</th>
                 <th scope="col">@sortablelink('state')</th>
                 <th scope="col">Actions</th>
             </tr>

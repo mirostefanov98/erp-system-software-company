@@ -15,7 +15,7 @@
                 <th scope="col">Name</th>
                 <th scope="col">Start date</th>
                 <th scope="col">End date</th>
-                <th scope="col">Description</th>
+                <th scope="col" style="width: 30%">Description</th>
                 <th scope="col">State</th>
             </tr>
             </tr>

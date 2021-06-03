@@ -3,8 +3,8 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div>
+        <div class="col-md-12">
+            <div class="text-center">
                 <h1>Welcome to Software company ERP system</h1>
             </div>
         </div>

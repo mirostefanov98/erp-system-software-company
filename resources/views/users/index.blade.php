@@ -20,7 +20,7 @@
             </div>
         </div>
     </div>
-    <table class="table table-bordered text-center ">
+    <table class="table table-bordered text-center table-responsive">
         <thead>
             <tr>
                 <th scope="col">Photo</th>
@@ -28,7 +28,7 @@
                 <th scope="col">Lastname</th>
                 <th scope="col">Email</th>
                 <th scope="col">Number</th>
-                <th scope="col">@sortablelink('position')</th>
+                <th scope="col" style="width: 10%">@sortablelink('position')</th>
                 <th scope="col">@sortablelink('role')</th>
                 <th scope="col">Actions</th>
             </tr>

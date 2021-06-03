@@ -28,7 +28,7 @@
                 <th scope="col">@sortablelink('priority')</th>
                 <th scope="col">Task name</th>
                 <th scope="col">@sortablelink('status')</th>
-                <th scope="col">Description</th>
+                <th scope="col" style="width: 30%">Description</th>
                 <th scope="col">@sortablelink('state')</th>
                 <th scope="col">Actions</th>
             </tr>
