@@ -30,7 +30,7 @@
                 <th scope="col">@sortablelink('status')</th>
                 <th scope="col" style="width: 30%">Description</th>
                 <th scope="col">@sortablelink('state')</th>
-                <th scope="col">Actions</th>
+                <th scope="col" style="width: 20%">Actions</th>
             </tr>
             </tr>
         </thead>
@@ -64,9 +64,9 @@
                     <td>{{ $task->description }}</td>
                     <td>
                         @if ($task->state == 0)
-                            <strong class="text-success">Active</strong>
+                            <strong class="text-success">In Progress</strong>
                         @else
-                            <strong class="text-danger">Finished</strong>
+                            <strong class="text-danger">Done</strong>
                         @endif
                     </td>
                     <td>

@@ -29,7 +29,7 @@
                 <th scope="col">Description</th>
                 <th scope="col">Link</th>
                 @if (Auth::user()->role != 2)
-                    <th scope="col">Actions</th>
+                    <th scope="col" style="width: 15%">Actions</th>
                 @endif
             </tr>
             </tr>

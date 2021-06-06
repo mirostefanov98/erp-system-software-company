@@ -7,7 +7,7 @@
             <img src="{{ asset('storage/' . $user->image_path) }}" class="m-3 rounded-circle" alt="No image" width="150px"
                 height="150px">
         </div>
-        <div class="col-md-3">
+        <div class="col-md-5">
             <h2>{{ $user->firstname }}'s Profile</h2>
             <h5><b>Firstname:</b> {{ $user->firstname }}</h5>
             <h5><b>Lastname:</b> {{ $user->lastname }}</h5>

@@ -14,7 +14,7 @@
                 <th scope="col">End date</th>
                 <th scope="col" style="width: 30%">Description</th>
                 <th scope="col">@sortablelink('state')</th>
-                <th scope="col">Actions</th>
+                <th scope="col" style="width: 20%">Actions</th>
             </tr>
             </tr>
         </thead>
