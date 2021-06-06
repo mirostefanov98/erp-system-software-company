@@ -79,7 +79,7 @@
                                 @method('DELETE')
 
                                 <button type="submit" class="btn btn-danger" @if ($task->state == 0) disabled @endif
-                                    onclick="if(!confirm('Are you sure to delete this task?')) return false ">
+                                    onclick="if(!confirm('Are you sure to delete this task {{ $task->name }}?')) return false ">
                                     Delete
                                 </button>
                             @else

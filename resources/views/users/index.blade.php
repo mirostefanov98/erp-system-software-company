@@ -70,7 +70,7 @@
                             @method('DELETE')
 
                             <button type="submit" class="btn btn-danger" @if ($user->role == 0) disabled @endif
-                                onclick="if(!confirm('Are you sure to delete this user?')) return false ">
+                                onclick="if(!confirm('Are you sure to delete this user {{ $user->firstname }}?')) return false ">
                                 Delete
                             </button>
                         </form>
