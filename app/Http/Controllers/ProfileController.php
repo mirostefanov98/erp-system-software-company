@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -19,6 +20,7 @@ class ProfileController extends Controller
     {
         if (isset($request->image)) {
             $user = User::find(Auth::user()->id);
+            Storage::disk('public')->delete($user->image_path);
             $user->image_path = $request->file('image')->store('images/' . $user->id, 'public');
             $user->save();
         }
