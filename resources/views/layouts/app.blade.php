@@ -61,7 +61,7 @@
                             @endif
 
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('leaves.my_leaves') }}">My Leaves</a>
+                                <a class="nav-link" href="{{ route('leaves.my_leaves') }}">My Days off</a>
                             </li>
 
                             <li class="nav-item">
@@ -76,7 +76,7 @@
 
                             @if (Auth::user()->role == 3 || Auth::user()->role == 0)
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('leaves.all_leaves') }}">All Leaves</a>
+                                    <a class="nav-link" href="{{ route('leaves.all_leaves') }}">All Days off</a>
                                 </li>
                             @endif
 

@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Request New Leave</h2>
+                <h2>New Days off</h2>
             </div>
             <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('leaves.my_leaves') }}"> Back</a>

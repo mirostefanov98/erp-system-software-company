@@ -22,43 +22,46 @@
             </div>
         </div>
     </div>
-    <table class="table table-bordered text-center ">
-        <thead>
-            <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Description</th>
-                <th scope="col">Link</th>
-                @if (Auth::user()->role != 2)
-                    <th scope="col" style="width: 15%">Actions</th>
-                @endif
-            </tr>
-            </tr>
-        </thead>
-        <tbody class="align-middle">
-            @foreach ($resources as $resource)
+    <div class="table-responsive">
+        <table class="table table-bordered text-center ">
+            <thead>
                 <tr>
-                    <td>{{ $resource->name }}</td>
-                    <td>{{ $resource->description }}</td>
-                    <td><a href="{{ $resource->link }}">{{ $resource->link }}</a></td>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Link</th>
                     @if (Auth::user()->role != 2)
-                        <td>
-                            <form action="{{ route('resources.destroy', $resource->id) }}" method="POST">
-
-                                <a class="btn btn-primary" href="{{ route('resources.edit', $resource->id) }}">Edit</a>
-
-                                @csrf
-                                @method('DELETE')
-
-                                <button type="submit" class="btn btn-danger"
-                                    onclick="if(!confirm('Are you sure to delete this resource?')) return false ">
-                                    Delete
-                                </button>
-                            </form>
-                        </td>
+                        <th scope="col" style="width: 15%">Actions</th>
                     @endif
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
+                </tr>
+            </thead>
+            <tbody class="align-middle">
+                @foreach ($resources as $resource)
+                    <tr>
+                        <td>{{ $resource->name }}</td>
+                        <td>{{ $resource->description }}</td>
+                        <td><a href="{{ $resource->link }}">{{ $resource->link }}</a></td>
+                        @if (Auth::user()->role != 2)
+                            <td>
+                                <form action="{{ route('resources.destroy', $resource->id) }}" method="POST">
+
+                                    <a class="btn btn-primary  my-1"
+                                        href="{{ route('resources.edit', $resource->id) }}">Edit</a>
+
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <button type="submit" class="btn btn-danger  my-1"
+                                        onclick="if(!confirm('Are you sure to delete this resource?')) return false ">
+                                        Delete
+                                    </button>
+                                </form>
+                            </td>
+                        @endif
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
     {{ $resources->appends(Request::all())->links() }}
 @endsection
