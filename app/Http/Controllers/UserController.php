@@ -60,7 +60,9 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->projects()->detach();
-        Storage::disk('public')->delete($user->image_path);
+        if ($user->image_path != 'default.png') {
+            Storage::disk('public')->delete($user->image_path);
+        }
         $user->delete();
 
         return redirect()->route('users.index');
